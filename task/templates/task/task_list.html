@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    HELLO THIS IS THE TASK LIST
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for task in object_list %}
+        <li>{{ task.title }} - {{ task.created_at | date }}</li>
+    {% empty %}
+        <li>No tasks.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
