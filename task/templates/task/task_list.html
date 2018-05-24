@@ -5,12 +5,29 @@
 {% endblock %}
 
 {% block content %}
-<ul>
+<ul id="list">
     {% for task in object_list %}
         <li>{{ task.title }} - {{ task.created_at | date }}</li>
     {% empty %}
         <li>No tasks.</li>
     {% endfor %}
 </ul>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+  jQuery(document).ready(function($) {
+    var ws = new WebSocket(
+      'ws://localhost:8000/ws/notify?subscribe-user');
+
+    ws.onmessage = function(msg) {
+      console.log(msg.data);
+      $("#list").html($("#list").html() + '\n' + '<li>' + msg.data + '</li>');
+    };
+  });
+</script>
 
 {% endblock %}

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'task',
+
+    'ws4redis',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+
+WEBSOCKET_URL = '/ws/'
+
+WS4REDIS_CONNECTION = {
+    "host": "192.168.166.150"
+}
+
+WS4REDIS_PREFIX = 'ws'
+
+WSGI_APPLICATION = 'ws4redis.django_runserver.application'
